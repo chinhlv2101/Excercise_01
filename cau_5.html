@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm tra số đối xứng</title>
+</head>
+
+<body>
+    <script>
+        function ngichdaoso(so) {
+            if (so.length == 1) {
+                return so;
+            } else {
+                return ngichdaoso(so.substr(1)) + so.charAt(0);
+            }
+        }
+
+        function kiemtrasodoixung(n) {
+            let prime = false;
+            let tong = 0,
+                sodau, socuoi, dodaiso = 0;
+            dodaiso = n.toString().length;
+
+            if (n > 10) {
+                if (dodaiso % 2 == 0) {
+                    sodau = ngichdaoso((n.substr(0, dodaiso / 2)).toString());
+                    socuoi = n.substr(dodaiso / 2, dodaiso);
+
+                    if (sodau == socuoi) {
+                        prime = true;
+                    }
+                } else {
+                    dodaiso = dodaiso - 1;
+                    sodau = ngichdaoso((n.substr(0, dodaiso / 2)).toString());
+                    socuoi = n.substr(dodaiso / 2 + 1, dodaiso);
+
+                    if (sodau == socuoi) {
+                        prime = true;
+                    }
+                }
+
+            } else {
+                prime = true;
+            }
+            if (prime) {
+                document.write(n + " la so doi xung");
+            } else {
+                document.write(n + " khong phai la so doi xung");
+            }
+
+        }
+
+        var n = prompt("Nhập vào 1 số");
+
+        kiemtrasodoixung(n);
+    </script>
+</body>
+
+</html>
